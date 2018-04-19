@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Todo App</title>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700'
+	rel='stylesheet' type='text/css'></link>
+<link rel="stylesheet" href="css/app.css" type="text/css" media="screen"
+	charset="utf-8"></link>
+</head>
+<body ng-app="todo">
+	<div class="container" ng-controller="TodoController">
+		<p>
+			<label for="new-task">Add Item</label><input id="new-task"
+				type="text" ng-model="newTask"></input>
+			<button ng-click="saveTask(newTask)">Add</button>
+		</p>
+
+		<h3>Todo</h3>
+		<ul id="incomplete-tasks" ng-repeat="pendingTask in pendingTasks">
+			<li><input type="checkbox" ng-click="updateTaskStatus(pendingTask.taskName,1)"></input><label>{{pendingTask.taskName}}</label><input
+				type="text" ></input>
+			<button class="delete" ng-click="deleteTask(pendingTask)">Delete</button></li>
+		</ul>
+
+		<h3>Completed</h3>
+		<ul id="completed-tasks" ng-repeat="completedTask in completedTasks">
+			<li>
+				<input type="checkbox" checked ng-click="updateTaskStatus(completedTask.taskName,0)"></input><label>{{completedTask.taskName}}</label><input type="text"></input>
+				<button class="delete"  ng-click="deleteTask(completedTask)">Delete</button>
+			</li>
+		</ul>
+		
+	</div>
+
+</body>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-app.js"></script>
+
+</html>
